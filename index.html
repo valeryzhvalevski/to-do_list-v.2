@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 class="text_err opacity">Необходимо заполнить все поля</h1>
+    <form class="railway">
+
+      <h3>Информация о задаче</h3>
+      <div class="form-group">
+        <label for="name">Имя задачи</label>
+        <input type="text" id="name" />
+        <label for="pass">Автор задачи</label>
+        <input type="text" id="pass" />
+
+        <select id="select">
+          <option hidden value="">Выберите тип задачи</option>
+          <option value="inprogress">In progress</option>
+          <option value="medium">Medium</option>
+          <option value="deadline">Deadline</option>
+        </select>
+      </div>
+      <div class="submit-block">
+        <div class="submit-button">
+          <i class="fa fa-train" aria-hidden="true"></i><br />
+          <input type="button" id="btnSend" value="Отправить" />
+        </div>
+      </div>
+    </form>
+    <div class="cosntainer_task">
+      <div class="container_inprogress">
+        <h3>In Progress</h3>
+        <ul class="list_task"></ul>
+      </div>
+      <div class="container_medium">
+        <h3>Medium</h3>
+        <ul class="list_task"></ul>
+      </div>
+      <div class="container_deadline">
+        <h3>DeadLine</h3><ul class="list_task"></ul></div>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
