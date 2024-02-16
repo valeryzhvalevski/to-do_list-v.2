@@ -153,3 +153,38 @@ function renderTaskPage(arr) {
     }
   });
 }
+
+
+
+////////////////////////
+// получаю ссылки на стралки часов, как селектор CSS
+var second_arrow = document.querySelector('.clock-hand__second');
+var minute_arrow = document.querySelector('.clock-hand__minute');
+var hour_arrow = document.querySelector('.clock-hand__hour');
+console.log(second_arrow);
+
+function clock(){
+
+	// var d = new Date(2020, 10, 16, 12, 50, 45);
+	var d = new Date();
+	var second = d.getSeconds();
+	var minute = d.getMinutes();
+	var hour = d.getHours();
+	console.log(hour, minute, second);
+
+	// считаем угол поворота стрелок
+	var ss = second * 6;
+	var mm = minute * 6;
+	var hh = hour * 30 + mm / 12;
+
+	// секундная стрелка
+	second_arrow.style.transform = `rotate(${ss}deg)`;
+	// минутная стрелка
+	minute_arrow.style.transform = `rotate(${mm}deg)`;
+	// часовая стрелка
+	hour_arrow.style.transform = `rotate(${(hh)}deg)`;
+
+}
+
+clock();
+setInterval(clock, 1000);
