@@ -9,7 +9,7 @@ const contInProgress = document.querySelector(".container_inprogress ul");
 const contMedium = document.querySelector(".container_medium ul");
 const contDeadLine = document.querySelector(".container_deadline ul");
 const errText = document.querySelector(".text_err");
-const todosTaskLocalStorage = JSON.parse(localStorage.getItem('todosTask'));
+const todosTaskLocalStorage = JSON.parse(localStorage.getItem("todosTask"));
 
 btnSend.addEventListener("click", createSendTask);
 
@@ -37,21 +37,27 @@ function createSendTask(event) {
   }
 
   todos.push(task);
-  localStorage.setItem('todosTask', JSON.stringify(todos));
-  inputNameTask.value = '';
-  authorNameTask.value = '';
-  selectTask.value = '';
+  localStorage.setItem("todosTask", JSON.stringify(todos));
+  inputNameTask.value = "";
+  authorNameTask.value = "";
+  selectTask.value = "";
 }
 
 function createTaskElement(task) {
   const { name, author, status, id } = task;
+  const date = new Date(id);
+  const formattedDate = `${date.getDate()} ${date.toLocaleString("default", {
+    month: "short",
+  })} ${date.getFullYear()} ${date.getHours()}:${
+    (date.getMinutes() < 10 ? "0" : "") + date.getMinutes()
+  }`;
   const template = `
     <li>
       <div class="container_item">
         <p class="task_name task">Name task: ${name}</p>
         <p class="task_author task">Author task: <span>${author}</span></p>
         <p class="task_status task">Status task: <span>${status}</span></p>
-        <p class="date_task task">Date task: <span>${new Date(id)}</span></p>
+        <p class="date_task task">Date task: <span>${formattedDate}</span></p>
         <button class="btn_del" onclick="delTasks(${id})">Delete</button>
         <button class="btn_edit" onclick="editTask(${id})">Edit</button>
       </div>
@@ -66,10 +72,10 @@ function createTaskElement(task) {
         </div>
         <div class="wrapper_item-edit">
           <select id="selectEdit">
-            <option hidden value="">Выберите тип задачи</option>
+            <option hidden value="">Select task type</option>
             <option value="inprogress">In progress</option>
+            <option value="medium">Medium</option>
             <option value="deadline">Deadline</option>
-            <option value="error">Error</option>
           </select>   
         </div>
         <button onclick="saveEditTask(${id}, event)">Save</button>
@@ -85,7 +91,7 @@ function createTaskElement(task) {
 
 function delTasks(id) {
   todos = todos.filter((item) => item.id !== id);
-  localStorage.setItem('todosTask', JSON.stringify(todos));
+  localStorage.setItem("todosTask", JSON.stringify(todos));
   renderTaskPage(todos);
 }
 
@@ -116,7 +122,7 @@ function saveEditTask(id, event) {
     }
     return item;
   });
-  localStorage.setItem('todosTask', JSON.stringify(newTodos));
+  localStorage.setItem("todosTask", JSON.stringify(newTodos));
   renderTaskPage(newTodos);
 }
 
@@ -154,36 +160,32 @@ function renderTaskPage(arr) {
   });
 }
 
-
-
 ////////////////////////
 // получаю ссылки на стралки часов, как селектор CSS
-var second_arrow = document.querySelector('.clock-hand__second');
-var minute_arrow = document.querySelector('.clock-hand__minute');
-var hour_arrow = document.querySelector('.clock-hand__hour');
+var second_arrow = document.querySelector(".clock-hand__second");
+var minute_arrow = document.querySelector(".clock-hand__minute");
+var hour_arrow = document.querySelector(".clock-hand__hour");
 console.log(second_arrow);
 
-function clock(){
+function clock() {
+  // var d = new Date(2020, 10, 16, 12, 50, 45);
+  var d = new Date();
+  var second = d.getSeconds();
+  var minute = d.getMinutes();
+  var hour = d.getHours();
+  console.log(hour, minute, second);
 
-	// var d = new Date(2020, 10, 16, 12, 50, 45);
-	var d = new Date();
-	var second = d.getSeconds();
-	var minute = d.getMinutes();
-	var hour = d.getHours();
-	console.log(hour, minute, second);
+  // считаем угол поворота стрелок
+  var ss = second * 6;
+  var mm = minute * 6;
+  var hh = hour * 30 + mm / 12;
 
-	// считаем угол поворота стрелок
-	var ss = second * 6;
-	var mm = minute * 6;
-	var hh = hour * 30 + mm / 12;
-
-	// секундная стрелка
-	second_arrow.style.transform = `rotate(${ss}deg)`;
-	// минутная стрелка
-	minute_arrow.style.transform = `rotate(${mm}deg)`;
-	// часовая стрелка
-	hour_arrow.style.transform = `rotate(${(hh)}deg)`;
-
+  // секундная стрелка
+  second_arrow.style.transform = `rotate(${ss}deg)`;
+  // минутная стрелка
+  minute_arrow.style.transform = `rotate(${mm}deg)`;
+  // часовая стрелка
+  hour_arrow.style.transform = `rotate(${hh}deg)`;
 }
 
 clock();

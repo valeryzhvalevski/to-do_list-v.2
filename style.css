@@ -16,6 +16,17 @@ body {
 button,
 select {
   cursor: pointer;
+  border: none;
+  border-radius: 7px;
+}
+button {
+  margin-top: 7px;
+  height: 25px;
+}
+p,
+span {
+  color: #323232;
+  font-size: 1rem;
 }
 .main-pic {
   flex-basis: 20%;
@@ -38,6 +49,7 @@ select {
   margin-bottom: 40px;
   background: #ecf2ff;
   transition: 0.6s ease;
+  box-shadow: 10px 10px 8px 0px rgba(34, 60, 80, 0.1);
 }
 .railway:hover {
   background: #e3ebfcf7;
@@ -114,9 +126,10 @@ select {
   width: 100%;
   height: 41px;
   background: #1b2ffa1a;
+  cursor: pointer;
+  color: #4983c2;
   border: none;
   border-radius: 7px;
-  cursor: pointer;
 }
 .text_err {
   position: absolute;
@@ -132,8 +145,7 @@ select {
   transition: 0.5s ease;
   padding-top: 8%;
 }
-@media screen and (max-height:880px) {
-  
+@media screen and (max-height: 880px) {
 }
 .opacity {
   opacity: 0;
@@ -145,23 +157,34 @@ select {
   justify-content: space-around;
   margin: 20px;
   font-family: "Oswald", sans-serif;
-  background-color: #faab1b;
-  box-shadow: 23px 19px 8px 0px rgba(34, 60, 80, 0.2);
+  background-color: #faab1b3d;
+  box-shadow: 10px 10px 8px 0px rgba(34, 60, 80, 0.1);
+  border-radius: 7px;
+  padding: 7px;
+  transition: 0.4s ease;
+}
+.container_item:hover {
+  background-color: #faab1b3d;
 }
 
 .task span {
   margin-left: 10px;
-  font-size: 18px;
 }
 
 .edit_item {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  border-radius: 7px;
   margin: 20px;
   padding: 10px;
+  background-color: #faab1b8a;
+}
+.edit_item label {
+  color: #f5e2c7;
 }
 
-.edit_item label {
+.wrapper_item-edit label {
   margin-right: 20px;
   font-size: 18px;
   font-family: "Oswald", sans-serif;
@@ -175,11 +198,7 @@ select {
   outline: none;
   border: none;
   border-bottom: 1px solid;
-  font-size: 18px;
-}
-
-.edit_item {
-  background-color: #faab1b;
+  font-size: 1rem;
 }
 
 .none {
@@ -210,9 +229,9 @@ select {
   padding: 10px;
   color: rgb(66 67 25 / 38%);
 }
-.container_deadline h3{
-padding: 10px;
-color: rgb(98 35 35 / 32%);;
+.container_deadline h3 {
+  padding: 10px;
+  color: rgb(98 35 35 / 32%);
 }
 .container_inprogress {
   background-color: rgba(92, 247, 128, 0.229);
@@ -235,7 +254,11 @@ color: rgb(98 35 35 / 32%);;
 .container_deadline:hover {
   background-color: rgba(247, 92, 92, 0.318);
 }
-
+.btn_edit,
+.btn_del {
+  margin-top: 7px;
+  height: 25px;
+}
 .clock-box {
   position: absolute;
   right: 1%;
@@ -247,10 +270,24 @@ color: rgb(98 35 35 / 32%);;
   border-radius: 50%;
   scale: 0.7;
 }
-@media screen and (max-width: 1303px){
+@media screen and (max-width: 1303px) {
   .clock-box {
     scale: 0.4;
-
+  }
+}
+@media screen and (max-width: 1000px) {
+  .clock-box {
+    right: -5%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .clock-box {
+    right: -15%;
+  }
+}
+@media screen and (max-width: 650px) {
+  .clock-box {
+    right: -18%;
   }
 }
 
